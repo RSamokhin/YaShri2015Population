@@ -47,10 +47,8 @@ function getData(url, callback) {
 var requests = ['/countries', '/cities', '/populations'];
 var responses = {};
 
-
 for (var i = 0; i < 3; i++) {
     var request = requests[i];
-    
     var callback = (function(request){
 		return function (error, result) {
 			responses[request] = result;
@@ -59,7 +57,6 @@ for (var i = 0; i < 3; i++) {
 				l.push(K);
 
 			if (l.length == 3) {
-			
 				var contintnetOrCountryOrCity = prompt('Input country or city name', 'Africa');
 				var c = [], cc = [], p = 0;
 				for (i = 0; i < responses['/countries'].length; i++) {
@@ -68,11 +65,9 @@ for (var i = 0; i < 3; i++) {
 					}
 				}
 
-				if (!c.length)
-				{
+				if (!c.length) {
 					c = [contintnetOrCountryOrCity];
 				}
-				
 				for (i = 0; i < responses['/cities'].length; i++) {
 					for (j = 0; j < c.length; j++) {
 						if (responses['/cities'][i].country === c[j]) {
@@ -81,11 +76,9 @@ for (var i = 0; i < 3; i++) {
 					}
 				}
 
-                if (!cc.length)
-				{
+                if (!cc.length) {
 					cc = [contintnetOrCountryOrCity];
 				}
-                
 				for (i = 0; i < responses['/populations'].length; i++) {
 					for (j = 0; j < cc.length; j++) {
 						if (responses['/populations'][i].name === cc[j]) {
@@ -94,7 +87,7 @@ for (var i = 0; i < 3; i++) {
 					}
 				}
 				alert('Total population in ' + contintnetOrCountryOrCity + ' cities: ' + p);
-				console.log('Total population in ' + contintnetOrCountryOrCity + ' cities: ' + p);
+				console.log('Total population in ' + contintnetOrCountryOrCity + ': ' + p);
 			}
 		};
 	})(request);
